@@ -13,12 +13,12 @@ export const getProducts = async (
   try {
     const products = await Product.find();
 
-    res.json({
+    return res.json({
       items: products,
       total: products.length,
     });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
@@ -29,7 +29,7 @@ export const createProduct = async (
 ) => {
   try {
     const product = await Product.create(req.body);
-    res.status(201).json(product);
+    return res.status(201).json(product);
   } catch (error) {
     if (error instanceof MongooseError.ValidationError) {
       return next(new BadRequestError(error.message));

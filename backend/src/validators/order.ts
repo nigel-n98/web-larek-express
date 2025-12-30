@@ -1,6 +1,6 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 
-export const createOrderValidator = celebrate({
+const createOrderValidator = celebrate({
   [Segments.BODY]: Joi.object({
     items: Joi.array().items(Joi.string().hex().length(24)).min(1).required(),
     total: Joi.number().required(),
@@ -10,3 +10,5 @@ export const createOrderValidator = celebrate({
     address: Joi.string().required(),
   }),
 });
+
+export default createOrderValidator;

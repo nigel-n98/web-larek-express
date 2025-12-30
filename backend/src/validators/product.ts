@@ -1,6 +1,6 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 
-export const createProductValidator = celebrate({
+const createProductValidator = celebrate({
   [Segments.BODY]: Joi.object({
     title: Joi.string().min(2).max(30).required(),
     image: Joi.object({
@@ -12,3 +12,5 @@ export const createProductValidator = celebrate({
     price: Joi.number().allow(null),
   }),
 });
+
+export default createProductValidator;
